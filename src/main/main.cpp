@@ -1,6 +1,6 @@
 #include <smartStopGeneral.hpp>
 
-static void testParametersClass(Parameters& parameters)
+/* static void testParametersClass(Parameters& parameters)
 {
 	if (parameters.option == SMART_STOP)
 		std::cout << "SMART_STOP" << std::endl;
@@ -20,7 +20,7 @@ static void testParametersClass(Parameters& parameters)
 		std::cout << "UNKNOWN" << std::endl;
 	if (!parameters.optionParameter.empty())
 		std::cout << parameters.optionParameter << std::endl;
-}
+} */
 
 int main(int argc, char **argv)
 {
@@ -31,9 +31,10 @@ int main(int argc, char **argv)
 	Parameters parameters(argc, argsVector);
 	parameters.parseParameters();
 
-	testParametersClass(parameters);
+	//testParametersClass(parameters);
 	
-	//SmartStop::execute(parameters);
+	//if (SmartStop::execute(parameters) == FAILED)
+		//return 1;
 
 	return 0;
 }

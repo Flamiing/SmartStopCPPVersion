@@ -1,7 +1,9 @@
 #ifndef SMARTSTOPUTILS_HPP
 # define SMARTSTOPUTILS_HPP
 
-// Possible parameters:
+# include <vector>
+# include <string>
+
 enum Option
 {
 	SMART_STOP,
@@ -12,6 +14,12 @@ enum Option
 	UNINSTALL,
 	HELP,
 	UNKNOWN
+};
+
+enum Status
+{
+	FAILED,
+	SUCCESS
 };
 
 // General utils:
