@@ -1,4 +1,4 @@
-#include <smartStopGeneral.hpp>
+#include <smartStop.hpp>
 
 int wrongNumberArguments(void)
 {

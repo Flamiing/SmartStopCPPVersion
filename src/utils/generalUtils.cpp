@@ -1,4 +1,4 @@
-#include <smartStopGeneral.hpp>
+#include <smartStop.hpp>
 
 // Transform the char array to vector;
 std::vector<std::string> charArrayToVector(char **charArray)

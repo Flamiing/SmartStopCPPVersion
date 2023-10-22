@@ -23,7 +23,6 @@ enum Status
 };
 
 // General utils:
-void printHelpMsg(void);
 std::vector<std::string> charArrayToVector(char **charArray);
 
 // Error utils:

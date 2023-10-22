@@ -1,8 +1,9 @@
-#include <smartStopGeneral.hpp>
+#include <smartStop.hpp>
+#include <execution.hpp>
 
-// Prints the help 
-void printHelpMsg(void)
+Status printHelp(void)
 {
+	std::cout << std::endl;
 	std::cout << "                                      ##########################" << std::endl;
 	std::cout << "                                      ## AVAILABLE PARAMETERS ##" << std::endl;
 	std::cout << "###############################################################################################################" << std::endl;
@@ -21,4 +22,25 @@ void printHelpMsg(void)
 	std::cout << "##                                   https://github.com/Flamiing/SmartStop                                   ##" << std::endl;
 	std::cout << "##                                                                                                           ##" << std::endl;
 	std::cout << "###############################################################################################################" << std::endl;
+	std::cout << std::endl;
+	return SUCCESS;
+}
+
+Status printVersion(void)
+{
+	std::cout << std::endl;
+	std::cout << PROGRAM_NAME << " " << VERSION << std::endl;
+	std::cout << std::endl;
+	std::cout << LICENSE << std::endl;
+	std::cout << std::endl;
+	std::cout << COPYRIGHT << std::endl;
+	std::cout << std::endl;
+	return SUCCESS;
+}
+
+Status unknownParameterError(void)
+{
+	std::cerr << "Error: Wrong parameter passed." << std::endl;
+	std::cerr << "Use 'smart-stop -h' or 'smart-stop --help' to see the available parameters." << std::endl;
+	return SUCCESS;
 }

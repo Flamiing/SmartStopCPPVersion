@@ -1,4 +1,4 @@
-#include <smartStopGeneral.hpp>
+#include <smartStop.hpp>
 
 /* static void testParametersClass(Parameters& parameters)
 {
@@ -22,7 +22,7 @@
 		std::cout << parameters.optionParameter << std::endl;
 } */
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
 	if (argc > 3)
 		return wrongNumberArguments();
@@ -33,8 +33,8 @@ int main(int argc, char **argv)
 
 	//testParametersClass(parameters);
 	
-	//if (SmartStop::execute(parameters) == FAILED)
-		//return 1;
+	if (execute(parameters) == FAILED)
+		return 1;
 
 	return 0;
 }
