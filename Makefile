@@ -8,7 +8,8 @@ COLOR_OFF = \033[0m
 NAME = smart-stop
 
 SRC =	main.cpp Parameters.cpp errorUtils.cpp generalUtils.cpp execution.cpp initializers.cpp \
-		optionsWithoutParams.cpp configJsonFile.cpp getUserConfig.cpp modifyConfigFile.cpp
+		optionsWithoutParams.cpp configJsonFile.cpp getUserConfig.cpp modifyConfigFile.cpp \
+		setupConfigFile.cpp
 
 SRC_PATH = src/*/
 SRCS = $(addprefix $(SRC_PATH), $(SRC))

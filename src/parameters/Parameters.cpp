@@ -8,16 +8,7 @@ Parameters::~Parameters(void) {}
 void Parameters::parseParameters(void)
 {
 	if (this->_numArgs > 1)
-	{
 		_getOption(this->_parameters[1]);
-		if (this->_numArgs > 2)
-		{
-			this->optionParameter = this->_parameters[2];
-			this->hasOptionParameter = true;
-		}
-		else
-			this->hasOptionParameter = false;
-	}
 	else
 		this->option = SMART_STOP;
 }

@@ -1,75 +1,31 @@
 #include <configJsonFile.hpp>
 
-static bool wrongConfig(Json::Value configFile)
+bool modifySpecificParam(std::ifstream& input, Option modify, Json::Value configFile)
 {
-	const std::vector<std::string> validDistros = \
+	std::map<Option, std::string> configParams =
 	{
-		"Ubuntu", "Debian", "kali-linux",
-		"Ubuntu-16.04", "Ubuntu-18.04", "Ubuntu-20.04"
+		{DISTRO, "distro"},
+		{IDE, "ide"},
+		{TERMINAL, "winterminal"}
 	};
 
-	for (const auto& distro : validDistros)
+	auto it = configParams.find(modify);
+	if (it != configParams.end())
 	{
-    	if (configFile["distro"].asString() == distro)
-        	return false;
-	}
-	return true;
-}
-
-bool createFileIfNotExists(bool forced)
-{
-    if (!std::filesystem::exists(CONFIG_FILE_PATH) || forced == true)
-	{
-        std::ofstream file(CONFIG_FILE_PATH);
-		if (!file.is_open())
+		if (!modifySpecificConfig(configFile, it->second))
 		{
-			std::cerr << "Error: Can't open file or is not accessible" << std::endl;
+			input.close();
 			return false;
 		}
-		const std::string buffer = DEFAULT_CONFIG;
-		file << buffer;
-        file.close();
 		return true;
-    }
-	return true;
+	}
+	input.close();
+	return false;
 }
 
-bool modifyIfEmpty(std::ifstream& input)
+Status modifyParam(Parameters& params)
 {
-	if (input.peek() == std::ifstream::traits_type::eof())
-	{
-		if (!createFileIfNotExists(FORCED))
-		{
-			input.close();
-			return false;
-		}
-	}
-	return true;
+	if (!configJsonFile(params.option, MODIFY_OPTION))
+		return FAILED;
+	return SUCCESS;
 }
-
-bool modifyIfWrong(std::ifstream& input)
-{
-	Json::CharReaderBuilder jsonReader;
-    jsonReader["strictMode"] = false; // Suppress errors
-	Json::Value configFile;
-	JSONCPP_STRING parseErrors;
-    if (!Json::parseFromStream(jsonReader, input, &configFile, &parseErrors))
-	{
-		if (!createFileIfNotExists(FORCED))
-		{
-			input.close();
-			return false;
-		}
-
-	}
-	if (wrongConfig(configFile))
-	{
-		if (askUserForConfig(configFile))
-		{
-			input.close();
-			return false;
-		}
-	}
-	return true;
-}
-

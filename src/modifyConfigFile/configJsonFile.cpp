@@ -1,8 +1,24 @@
 #include <configJsonFile.hpp>
 
-bool configJsonFile(void)
+static bool getJsonFile(std::ifstream& input, Json::Value configFile)
 {
+	Json::CharReaderBuilder jsonReader;
+    jsonReader["strictMode"] = false; // Suppress errors
+	JSONCPP_STRING parseErrors;
+    if (!Json::parseFromStream(jsonReader, input, &configFile, &parseErrors))
+	{
+		if (!createFileIfNotExists(FORCED))
+		{
+			input.close();
+			return false;
+		}
+	}
+	return true;
+}
 
+bool configJsonFile(Option modify, int mode)
+{
+	Json::Value configFile;
 	if (!createFileIfNotExists(NOT_FORCED))
 		return false;
 	std::ifstream input(CONFIG_FILE_PATH);
@@ -11,15 +27,16 @@ bool configJsonFile(void)
 		std::cerr << "Error: Can't open file or is not accessible" << std::endl;
 		return false;
 	}
-	if (!modifyIfEmpty(input) || !modifyIfWrong(input))
+	if (!modifyIfEmpty(input))
 		return false;
+	getJsonFile(input, configFile);
+	if (bool modified = modifyIfWrong(input, configFile))
+		return false;
+	if (mode == MODIFY_OPTION)
+	{
+		if (!modifySpecificParam(input, modify, configFile))
+			return false;
+	}
 	input.close();
 	return true;
 }
-
-/* int	main(void)
-{
-	if (!configJsonFile())
-		return (1);
-	return (0);
-} */

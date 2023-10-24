@@ -3,12 +3,12 @@
 OptionFuncWithParams optionFuncMap;
 OptionFuncNoParams optionFuncMapNoParams;
 
-/* void initOptionFuncMap(void)
+void initOptionFuncMap(void)
 {
-	//optionFuncMap[TERMINAL] = &modifyTerminal;
-	//optionFuncMap[DISTRO] = &modifyDistro;
-	//optionFuncMap[IDE] = &modifyIde;
-} */
+	optionFuncMap[TERMINAL] = &modifyParam;
+	optionFuncMap[DISTRO] = &modifyParam;
+	optionFuncMap[IDE] = &modifyParam;
+}
 
 void initOptionFuncMapNoParams(void)
 {

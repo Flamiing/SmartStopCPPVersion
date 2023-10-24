@@ -4,7 +4,7 @@ static void getWinterminalBoolean(bool& winterminal)
 {
 	while (true)
 	{
-		std::cout << "WINTERMINAL: ";
+		std::cout << "TERMINAL: ";
 		std::cin >> std::boolalpha >> winterminal;
 		if (std::cin.fail())
 		{
@@ -33,6 +33,38 @@ bool askUserForConfig(Json::Value configFile)
 	configFile["distro"] = distro;
 	configFile["ide"] = ide;
 	configFile["winterminal"] = winterminal;
+	std::ofstream output(CONFIG_FILE_PATH);
+	if (!output.is_open())
+	{
+		std::cerr << "Error: Can't open file or is not accessible" << std::endl;
+		return false;
+	}
+	output << configFile;
+	output.close();
+	std::cout << "Everything is properly configured." << std::endl;
+	std::cout << "Please, launch again Smart Stop to turn off WSL. Enjoy 😊!" << std::endl;
+	return true;
+}
+
+bool modifySpecificConfig(Json::Value configFile, std::string modify)
+{
+	std::cout << "Please enter your preference: " << std::endl;
+	if (modify == "winterminal")
+	{
+		bool modifiedParam;
+		getWinterminalBoolean(modifiedParam);
+		configFile[modify] = modifiedParam;
+	}
+	else
+	{
+		std::string modifiedParam;
+		if (modify == "distro")
+			std::cout << "DISTRO: ";
+		else if (modify == "ide")
+			std::cout << "IDE: ";
+		std::cin >> modifiedParam;
+		configFile[modify] = modifiedParam;
+	}
 	std::ofstream output(CONFIG_FILE_PATH);
 	if (!output.is_open())
 	{

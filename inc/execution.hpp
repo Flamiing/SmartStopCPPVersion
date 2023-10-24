@@ -5,6 +5,7 @@
 # include <string>
 # include <map>
 # include "smartStopUtils.hpp"
+# include "configJsonFile.hpp"
 # include "classes/Parameters.hpp"
 
 class Parameters;
@@ -19,10 +20,9 @@ extern OptionFuncNoParams optionFuncMapNoParams;
 
 Status execute(Parameters& params);
 
-//void initOptionFuncMap(void);
+void initOptionFuncMap(void);
 void initOptionFuncMapNoParams(void);
-//Status execOptionFunc(Parameters& params);
-Status execOptionFuncNoParams(Parameters& params);
+Status execOptionFunc(Parameters& params);
 Status unknownParameterError(void);
 Status printHelp(void);
 Status printVersion(void);

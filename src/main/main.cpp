@@ -24,7 +24,7 @@
 
 int main(int argc, char** argv)
 {
-	if (argc > 3)
+	if (argc > 2)
 		return wrongNumberArguments();
 
 	std::vector<std::string> argsVector = charArrayToVector(argv);

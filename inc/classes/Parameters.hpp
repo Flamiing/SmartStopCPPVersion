@@ -17,8 +17,6 @@ class Parameters
 
 		void parseParameters(void);
 		Option option;
-		std::string optionParameter;
-		bool hasOptionParameter;
 
 	private:
 		Parameters(void);

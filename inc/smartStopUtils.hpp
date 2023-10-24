@@ -13,7 +13,8 @@ enum Option
 	VERSION,
 	UNINSTALL,
 	HELP,
-	UNKNOWN
+	UNKNOWN,
+	NONE
 };
 
 enum Status
