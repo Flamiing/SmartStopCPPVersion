@@ -16,6 +16,10 @@
 # define NOT_FORCED false
 # define NORMAL 0
 # define MODIFY_OPTION 1
+# define WARNING_ONE "WARNING: Config file needs to be modified."
+# define WARNING_TWO "WARNING: Please enter your preferences one by one:"
+
+# define ERROR_CANNOT_OPEN_FILE "Error: Can't open file or is not accessible"
 
 class Parameters;
 

@@ -23,7 +23,7 @@ bool createFileIfNotExists(bool forced)
         std::ofstream file(CONFIG_FILE_PATH);
 		if (!file.is_open())
 		{
-			std::cerr << "Error: Can't open file or is not accessible" << std::endl;
+			std::cerr << ERROR_CANNOT_OPEN_FILE << std::endl;
 			return false;
 		}
 		const std::string buffer = DEFAULT_CONFIG;

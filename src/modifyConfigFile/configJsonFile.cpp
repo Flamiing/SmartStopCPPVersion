@@ -24,13 +24,14 @@ bool configJsonFile(Option modify, int mode)
 	std::ifstream input(CONFIG_FILE_PATH);
 	if (!input.is_open())
 	{
-		std::cerr << "Error: Can't open file or is not accessible" << std::endl;
+		std::cerr << ERROR_CANNOT_OPEN_FILE << std::endl;
 		return false;
 	}
 	if (!modifyIfEmpty(input))
 		return false;
 	getJsonFile(input, configFile);
-	if (bool modified = modifyIfWrong(input, configFile))
+	bool modified = modifyIfWrong(input, configFile);
+	if (modified)
 		return false;
 	if (mode == MODIFY_OPTION)
 	{

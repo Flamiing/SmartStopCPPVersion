@@ -23,8 +23,8 @@ bool askUserForConfig(Json::Value configFile)
 	std::string ide;
 	bool winterminal;
 
-	std::cout << "WARNING: Config file needs to be modified." << std::endl;
-	std::cout << "WARNING: Please enter your preferences one by one:" << std::endl;
+	std::cout << WARNING_ONE << std::endl;
+	std::cout << WARNING_TWO << std::endl;
 	std::cout << "DISTRO: ";
 	std::cin >> distro;
 	std::cout << "IDE: ";
@@ -36,7 +36,7 @@ bool askUserForConfig(Json::Value configFile)
 	std::ofstream output(CONFIG_FILE_PATH);
 	if (!output.is_open())
 	{
-		std::cerr << "Error: Can't open file or is not accessible" << std::endl;
+		std::cerr << ERROR_CANNOT_OPEN_FILE << std::endl;
 		return false;
 	}
 	output << configFile;
@@ -68,7 +68,7 @@ bool modifySpecificConfig(Json::Value configFile, std::string modify)
 	std::ofstream output(CONFIG_FILE_PATH);
 	if (!output.is_open())
 	{
-		std::cerr << "Error: Can't open file or is not accessible" << std::endl;
+		std::cerr << ERROR_CANNOT_OPEN_FILE << std::endl;
 		return false;
 	}
 	output << configFile;
