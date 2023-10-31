@@ -47,15 +47,16 @@ bool modifyIfEmpty(std::ifstream& input)
 	return true;
 }
 
-bool modifyIfWrong(std::ifstream& input, Json::Value configFile)
+Status modifyIfWrong(std::ifstream& input, Json::Value configFile)
 {
 	if (wrongConfig(configFile))
 	{
 		if (!askUserForConfig(configFile))
 		{
 			input.close();
-			return false;
+			return FAILED;
 		}
+		return MODIFIED;
 	}
-	return true;
+	return NOT_MODIFIED;
 }

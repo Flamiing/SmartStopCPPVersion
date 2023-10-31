@@ -20,7 +20,9 @@ enum Option
 enum Status
 {
 	FAILED,
-	SUCCESS
+	SUCCESS,
+	MODIFIED,
+	NOT_MODIFIED
 };
 
 // General utils:

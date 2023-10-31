@@ -1,6 +1,6 @@
 #include <configJsonFile.hpp>
 
-static bool getJsonFile(std::ifstream& input, Json::Value configFile)
+static bool getJsonFile(std::ifstream& input, Json::Value& configFile)
 {
 	Json::CharReaderBuilder jsonReader;
     jsonReader["strictMode"] = false; // Suppress errors
@@ -30,8 +30,7 @@ bool configJsonFile(Option modify, int mode)
 	if (!modifyIfEmpty(input))
 		return false;
 	getJsonFile(input, configFile);
-	bool modified = modifyIfWrong(input, configFile);
-	if (modified)
+	if (modifyIfWrong(input, configFile) != NOT_MODIFIED)
 		return false;
 	if (mode == MODIFY_OPTION)
 	{

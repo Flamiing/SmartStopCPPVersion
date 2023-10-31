@@ -27,9 +27,9 @@ bool askUserForConfig(Json::Value configFile);
 bool configJsonFile(Option modify, int mode);
 bool createFileIfNotExists(bool forced);
 bool modifyIfEmpty(std::ifstream& input);
-bool modifyIfWrong(std::ifstream& input, Json::Value configFile);
 bool modifySpecificConfig(Json::Value configFile, std::string modify);
 bool modifySpecificParam(std::ifstream& input, Option modify, Json::Value configFile);
+Status modifyIfWrong(std::ifstream& input, Json::Value configFile);
 Status modifyParam(Parameters& params);
 
 #endif
